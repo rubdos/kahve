@@ -1,8 +1,9 @@
 #include "kahve.h"
 
-#ifdef __TURKISH__
-# include "turkish.h"
-#endif //__TURKISH__
+
+/*#ifdef __TURKISH__
+# include "turkish.h"   TODO
+#endif //__TURKISH__*/
 
 int main(int argc, char **argv){
     time_t t = time(NULL);
