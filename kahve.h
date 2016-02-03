@@ -40,7 +40,7 @@ void doldur(Bardak *Fincan){         /* bardağımızı doldurmak
     if (Fincan->bardak_bos == true){ /* bardak zaten doluysa bir
                                       * daha doldurmayalım diye */
         puts("doldur");              /* doldururken "doldur" yazıyor */
-        sleep(1);                   /* 30 saniyede doluyor */
+        sleep(30);                   /* 30 saniyede doluyor */
         Fincan->bardak_bos = false;  /* doldurduğumuz için artık boş değil */
     }
 }
@@ -49,7 +49,7 @@ void ic(Bardak *Fincan){              /* kahveyi içmek için
                                        * olan fonksiyonumuz */
     if (Fincan->bardak_bos == false){ /* bardak zaten boşsa içmeyelim diye */
         puts("ic");                   /* içerken "ic" yazıyor */
-        sleep(1);                   /* 5 dakikada içiyoruz */
+        sleep(300);                   /* 5 dakikada içiyoruz */
         Fincan->bardak_bos = true;    /* içtiğimiz için artık boş */
     }
 }
