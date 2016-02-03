@@ -58,7 +58,7 @@ void doldur(Bardak *Fincan){
         sleep(30);
 #elif _WIN32
         /* Sleep() fonksiyonu,
-         * Windows'ta saniye ile çalışır. */
+         * Windows'ta mikrosaniye ile çalışır. */
         sleep(30000);
 #endif
         /* doldurduğumuz için artık boş değil */
@@ -78,7 +78,7 @@ void ic(Bardak *Fincan){
         sleep(300);
 #elif _WIN32
         /* Sleep() fonksiyonu,
-         * Windows'ta saniye ile çalışır. */
+         * Windows'ta mikrosaniye ile çalışır. */
         sleep(300000);
 #endif
         /* içtiğimiz için artık boş */

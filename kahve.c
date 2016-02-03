@@ -50,18 +50,18 @@ int main(int argc, char **argv){
 
         } /* while'ın sonu, hafta içi veya iş saati bitince buraya geliyor */
 
-        /* hafta için veya iş sati değilse 
+        /* hafta için veya iş sati değilse
          * (ana döngü içindeyiz ama while döngüsünden çıktık) vuhu */
         printf("Vuhu\n");
 
         /* bir dakika bekleyip tekrar kontrol edelim */
 #ifdef __unix__
-        /* sleep() fonksiyonu, 
+        /* sleep() fonksiyonu,
          * UNIX benzeri işletim sistemlerinde saniye ile çalışır. */
         sleep(60);
 #elif _WIN32
-        /* Sleep() fonksiyonu, 
-         * Windows'ta saniye ile çalışır. */
+        /* Sleep() fonksiyonu,
+         * Windows'ta mikrosaniye ile çalışır. */
         sleep(60000);
 #endif
     }
