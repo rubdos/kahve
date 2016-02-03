@@ -27,7 +27,7 @@ struct Bardak {      /* bardak yapımızı oluşturalım */
     bool bardak_bos; /* bardak boş mu test etmek için booleanımız */
 };                   /* Bardak adlı tipi oluşturalım */
 
-void doldur(Bardak *fincan){         /* bardağımızı doldurmak
+void doldur(struct Bardak* fincan){         /* bardağımızı doldurmak
                                       * için olan fonksiyonumuz */
     if (fincan->bardak_bos == true){ /* bardak zaten doluysa bir
                                       * daha doldurmayalım diye */
@@ -37,7 +37,7 @@ void doldur(Bardak *fincan){         /* bardağımızı doldurmak
     }
 }
 
-void ic(Bardak *fincan){              /* kahveyi içmek için
+void ic(struct Bardak* fincan){              /* kahveyi içmek için
                                        * olan fonksiyonumuz */
     if (fincan->bardak_bos == false){ /* bardak zaten boşsa içmeyelim diye */
         puts("ic");                   /* içerken "ic" yazıyor */
