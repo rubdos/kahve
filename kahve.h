@@ -25,7 +25,7 @@
                       * içmeyeceğimize karar vermek için */
 #ifdef __unix__
 # include <unistd.h>  /* sleep için */
-#elif defined(_WIN32) || defined(WIN32)
+#elif _WIN32
 # include <windows.h> /*sleep için */
 #endif
 
@@ -40,7 +40,11 @@ void doldur(Bardak *Fincan){         /* bardağımızı doldurmak
     if (Fincan->bardak_bos == true){ /* bardak zaten doluysa bir
                                       * daha doldurmayalım diye */
         puts("doldur");              /* doldururken "doldur" yazıyor */
+#ifdef __unix__
         sleep(30);                   /* 30 saniyede doluyor */
+#elif _WIN32
+        Sleep(30000);                /* 30 saniyede doluyor */
+#endif
         Fincan->bardak_bos = false;  /* doldurduğumuz için artık boş değil */
     }
 }
@@ -49,7 +53,11 @@ void ic(Bardak *Fincan){              /* kahveyi içmek için
                                        * olan fonksiyonumuz */
     if (Fincan->bardak_bos == false){ /* bardak zaten boşsa içmeyelim diye */
         puts("ic");                   /* içerken "ic" yazıyor */
+#ifdef __unix__
         sleep(300);                   /* 5 dakikada içiyoruz */
+#elif _WIN32
+        Sleep(300000);                /* 5 dakikada içiyoruz */
+#endif
         Fincan->bardak_bos = true;    /* içtiğimiz için artık boş */
     }
 }
