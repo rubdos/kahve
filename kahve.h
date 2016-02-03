@@ -1,7 +1,7 @@
 /*
- * <one line to give the program's name and a brief idea of what it does.>
- * Copyright (C) <year>  <name of author>
-
+ * Kahve.
+ * Copyright (C) 2016  Arda Ünlü
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
