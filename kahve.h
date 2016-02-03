@@ -16,20 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __KAHVE_H__
-#define __KAHVE_H__
-
+#pragma once
 #include <stdio.h>   /* "iç" ve "doldur" yazıları için */
 #include <stdbool.h> /* bardak dolu mu öğrenmek için */
 #include <time.h>    /* şu anki zamanı bulup ona göre içip
                       * içmeyeceğimize karar vermek için */
 #include <unistd.h>  /* sleep için */
 
-struct bardak {      /* bardak yapımızı oluşturalım */
+struct Bardak {      /* bardak yapımızı oluşturalım */
     bool bardak_bos; /* bardak boş mu test etmek için booleanımız */
-};
-
-typedef struct bardak Bardak; /* Bardak adlı tipi oluşturalım */
+};                   /* Bardak adlı tipi oluşturalım */
 
 void doldur(Bardak *fincan){         /* bardağımızı doldurmak
                                       * için olan fonksiyonumuz */
@@ -51,5 +47,3 @@ void ic(Bardak *fincan){              /* kahveyi içmek için
 }
 
 #define enguzelicecek kahve     /* <3 */
-
-#endif //__KAHVE_H__
