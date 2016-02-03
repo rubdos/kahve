@@ -46,4 +46,4 @@ void ic(struct Bardak* fincan){              /* kahveyi içmek için
     }
 }
 
-#define enguzelicecek kahve     /* <3 */
+#define en_guzel_icecek kahve     /* <3 */
