@@ -22,7 +22,8 @@ int main(int argc, char **argv){
     time_t t = time(NULL);          /* tarih ve saat için ana bölüm */
     struct tm tm = *localtime(&t);  /* burası da */
 
-    struct Bardak Fincan;                  /* Fincan adlı Bardak'ımızı tanımlayalım */
+    struct Bardak Fincan;                  /* Fincan adlı Bardak'ımızı
+                                            * tanımlayalım */
     struct Bardak* fincan = &Fincan;       /* fonksiyonlarda kullanabilmemiz
                                      * için Fincan için fincan adında
                                      * bir pointer tanimlayalım */
