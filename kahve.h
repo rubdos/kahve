@@ -16,34 +16,43 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+#ifndef __KAHVE_H__
+#define __KAHVE_H__
+
 #include <stdio.h>   /* "iç" ve "doldur" yazıları için */
 #include <stdbool.h> /* bardak dolu mu öğrenmek için */
 #include <time.h>    /* şu anki zamanı bulup ona göre içip
                       * içmeyeceğimize karar vermek için */
-#include <unistd.h>  /* sleep için */
+#ifdef __unix__
+# include <unistd.h>  /* sleep için */
+#elif defined(_WIN32) || defined(WIN32)
+# include <windows.h> /*sleep için */
+#endif
 
-struct Bardak {      /* bardak yapımızı oluşturalım */
+struct bardak {      /* bardak yapımızı oluşturalım */
     bool bardak_bos; /* bardak boş mu test etmek için booleanımız */
 };                   /* Bardak adlı tipi oluşturalım */
 
-void doldur(struct Bardak* fincan){         /* bardağımızı doldurmak
+typedef struct bardak Bardak;
+
+void doldur(Bardak *Fincan){         /* bardağımızı doldurmak
                                       * için olan fonksiyonumuz */
-    if (fincan->bardak_bos == true){ /* bardak zaten doluysa bir
+    if (Fincan->bardak_bos == true){ /* bardak zaten doluysa bir
                                       * daha doldurmayalım diye */
         puts("doldur");              /* doldururken "doldur" yazıyor */
-        sleep(30);                   /* 30 saniyede doluyor */
-        fincan->bardak_bos = false;  /* doldurduğumuz için artık boş değil */
+        sleep(1);                   /* 30 saniyede doluyor */
+        Fincan->bardak_bos = false;  /* doldurduğumuz için artık boş değil */
     }
 }
 
-void ic(struct Bardak* fincan){              /* kahveyi içmek için
+void ic(Bardak *Fincan){              /* kahveyi içmek için
                                        * olan fonksiyonumuz */
-    if (fincan->bardak_bos == false){ /* bardak zaten boşsa içmeyelim diye */
+    if (Fincan->bardak_bos == false){ /* bardak zaten boşsa içmeyelim diye */
         puts("ic");                   /* içerken "ic" yazıyor */
-        sleep(300);                   /* 5 dakikada içiyoruz */
-        fincan->bardak_bos = true;    /* içtiğimiz için artık boş */
+        sleep(1);                   /* 5 dakikada içiyoruz */
+        Fincan->bardak_bos = true;    /* içtiğimiz için artık boş */
     }
 }
 
 #define en_guzel_icecek kahve     /* <3 */
+#endif //__KAHVE_H__
