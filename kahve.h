@@ -19,30 +19,37 @@
 #ifndef __KAHVE_H__
 #define __KAHVE_H__
 
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-#include <time.h>
-#include <unistd.h>
+#include <stdio.h>   /* "iç" ve "doldur" yazıları için */
+#include <stdbool.h> /* bardak dolu mu öğrenmek için */
+#include <time.h>    /* şu anki zamanı bulup ona göre içip
+                      * içmeyeceğimize karar vermek için */
+#include <unistd.h>  /* sleep için */
 
-struct bardak {
-    bool bardak_bos;
+struct bardak {      /* bardak yapımızı oluşturalım */
+    bool bardak_bos; /* bardak boş mu test etmek için booleanımız */
 };
 
-typedef struct bardak Bardak;
+typedef struct bardak Bardak; /* Bardak adlı tipi oluşturalım */
 
-void doldur(Bardak *fincan){
-    fincan->bardak_bos = false;
-    puts("doldur");
-    sleep(30);
+void doldur(Bardak *fincan){         /* bardağımızı doldurmak
+                                      * için olan fonksiyonumuz */
+    if (fincan->bardak_bos == true){ /* bardak zaten doluysa bir
+                                      * daha doldurmayalım diye */
+        puts("doldur");              /* doldururken "doldur" yazıyor */
+        sleep(30);                   /* 30 saniyede doluyor */
+        fincan->bardak_bos = false;  /* doldurduğumuz için artık boş değil */
+    }
 }
 
-void ic(Bardak *fincan){
-    fincan->bardak_bos = true;
-    puts("ic");
-    sleep(300);
+void ic(Bardak *fincan){              /* kahveyi içmek için
+                                       * olan fonksiyonumuz */
+    if (fincan->bardak_bos == false){ /* bardak zaten boşsa içmeyelim diye */
+        puts("ic");                   /* içerken "ic" yazıyor */
+        sleep(300);                   /* 5 dakikada içiyoruz */
+        fincan->bardak_bos = true;    /* içtiğimiz için artık boş */
+    }
 }
 
-#define enguzelicecek kahve
+#define enguzelicecek kahve     /* <3 */
 
 #endif //__KAHVE_H__

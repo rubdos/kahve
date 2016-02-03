@@ -16,34 +16,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "kahve.h"
+#include "kahve.h" /* her şeyimizin olduğu header dosyası */
 
 /*#ifdef __TURKISH__
 # include "turkish.h"   TODO
 #endif //__TURKISH__*/
 
 int main(int argc, char **argv){
-    time_t t = time(NULL);
-    struct tm tm = *localtime(&t);
+    time_t t = time(NULL);          /* tarih ve saat için ana bölüm */
+    struct tm tm = *localtime(&t);  /* burası da */
 
-    Bardak Fincan;
-    Bardak *fincan = &Fincan;
-    Fincan.bardak_bos = true;
+    Bardak Fincan;                  /* Fincan adlı Bardak'ımızı tanımlayalım */
+    Bardak *fincan = &Fincan;       /* fonksiyonlarda kullanabilmemiz
+                                     * için Fincan için fincan adında
+                                     * bir pointer tanimlayalım */
+    Fincan.bardak_bos = true;       /* standart olarak boş */
 
-    for (;;){
-        while(0 < tm.tm_mday && 9 < tm.tm_hour
-           && 6 > tm.tm_mday && 17> tm.tm_hour){
+    for (;;){                       /* "main loop" ana döngü */
+        while(1 <= tm.tm_mday && 5  >= tm.tm_mday   /* hafta içi mi? */
+           && 9 <= tm.tm_hour && 17 >= tm.tm_hour){ /* iş saati mi?  */
 
-            if (Fincan.bardak_bos == true)
-               doldur(fincan);
-            else
-                ic(fincan);
-            sleep(1);
+            if (Fincan.bardak_bos == true) /* fincanımız boşsa */
+               doldur(fincan);             /* dolduralım */
+            else                           /* değilse */
+                ic(fincan);                /* içelim */
         }
         //else
-        printf("Vuhu\n");
-        sleep(60);
+        printf("Vuhu\n");           /* hafta için veya iş sati değilse vuhu */
+        sleep(60);                  /* bir dakika bekleyip
+                                     * tekrar kontrol edelim */
     }
-
     return 0;
 }
