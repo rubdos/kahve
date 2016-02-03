@@ -16,51 +16,75 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+/* bu dosyanın bir kere include edileceğinden emin olalım. */
 #ifndef __KAHVE_H__
 #define __KAHVE_H__
 
-#include <stdio.h>   /* "iç" ve "doldur" yazıları için */
-#include <stdbool.h> /* bardak dolu mu öğrenmek için */
-#include <time.h>    /* şu anki zamanı bulup ona göre içip
-                      * içmeyeceğimize karar vermek için */
+/* "iç" ve "doldur" yazıları için */
+#include <stdio.h>
+/* bardak dolu mu öğrenmek için */
+#include <stdbool.h>
+/* şu anki zamanı bulup ona göre içip içmeyeceğimize karar vermek için */
+#include <time.h>
+
 #ifdef __unix__
-# include <unistd.h>  /* sleep için */
+/* sleep() fonksiyonu,
+* UNIX benzeri işletim sistemlerinde unistd.h dosyasında bulunur. */
+# include <unistd.h>
 #elif _WIN32
-# include <windows.h> /*sleep için */
+/* Sleep() fonksiyonu,
+* Windows'ta windows.h dosyasında bulunur. */
+# include <windows.h>
 #endif
 
-struct bardak {      /* bardak yapımızı oluşturalım */
-    bool bardak_bos; /* bardak boş mu test etmek için booleanımız */
-};                   /* Bardak adlı tipi oluşturalım */
+/* bardak yapımızı oluşturalım */
+struct bardak {
+/* bardak boş mu test etmek için booleanımız */
+    bool bardak_bos;
+};
 
+/* Bardak adlı tipi oluşturalım */
 typedef struct bardak Bardak;
 
-void doldur(Bardak *Fincan){         /* bardağımızı doldurmak
-                                      * için olan fonksiyonumuz */
-    if (Fincan->bardak_bos == true){ /* bardak zaten doluysa bir
-                                      * daha doldurmayalım diye */
-        puts("doldur");              /* doldururken "doldur" yazıyor */
+/* bardağımızı doldurmak için olan fonksiyonumuz */
+void doldur(Bardak *Fincan){
+    /* bardak zaten doluysa bir daha doldurmayalım diye */
+    if (Fincan->bardak_bos == true){
+        /* doldururken "doldur" yazıyor */
+        printf("Doldur\n");
 #ifdef __unix__
-        sleep(30);                   /* 30 saniyede doluyor */
+        /* sleep() fonksiyonu,
+         * UNIX benzeri işletim sistemlerinde saniye ile çalışır. */
+        sleep(30);
 #elif _WIN32
-        Sleep(30000);                /* 30 saniyede doluyor */
+        /* Sleep() fonksiyonu,
+         * Windows'ta saniye ile çalışır. */
+        sleep(30000);
 #endif
-        Fincan->bardak_bos = false;  /* doldurduğumuz için artık boş değil */
+        /* doldurduğumuz için artık boş değil */
+        Fincan->bardak_bos = false;
     }
 }
 
-void ic(Bardak *Fincan){              /* kahveyi içmek için
-                                       * olan fonksiyonumuz */
-    if (Fincan->bardak_bos == false){ /* bardak zaten boşsa içmeyelim diye */
-        puts("ic");                   /* içerken "ic" yazıyor */
+/* kahveyi içmek için olan fonksiyonumuz */
+void ic(Bardak *Fincan){
+    /* bardak zaten boşsa içmeyelim diye */
+    if (Fincan->bardak_bos == false){
+        /* içerken "ic" yazıyor */
+        printf("İç\n");
 #ifdef __unix__
-        sleep(300);                   /* 5 dakikada içiyoruz */
+        /* sleep() fonksiyonu,
+         * UNIX benzeri işletim sistemlerinde saniye ile çalışır. */
+        sleep(300);
 #elif _WIN32
-        Sleep(300000);                /* 5 dakikada içiyoruz */
+        /* Sleep() fonksiyonu,
+         * Windows'ta saniye ile çalışır. */
+        sleep(300000);
 #endif
-        Fincan->bardak_bos = true;    /* içtiğimiz için artık boş */
+        /* içtiğimiz için artık boş */
+        Fincan->bardak_bos = true;
     }
 }
 
-#define en_guzel_icecek kahve     /* <3 */
+#define en_guzel_icecek "kahve" /* <3 */
 #endif //__KAHVE_H__

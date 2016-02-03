@@ -16,26 +16,54 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "kahve.h" /* her şeyimizin olduğu header dosyası */
+/* her şeyimizin olduğu header dosyası */
+#include "kahve.h"
 
 int main(int argc, char **argv){
-    time_t t = time(NULL);          /* tarih ve saat için ana bölüm */
-    struct tm tm = *localtime(&t);  /* burası da */
+    /* tarih ve saat için ana bölüm */
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
 
-    Bardak Fincan;     /* Fincan adlı Bardak'ımızı tanımlayalım */
-    Fincan.bardak_bos = true; /* standart olarak boş */
+    /* Fincan adlı Bardak'ımızı tanımlayalım */
+    Bardak Fincan;
 
-    for (;;){                 /* "main loop" ana döngü */
-        while ((1 <= tm.tm_mday && 5  >= tm.tm_mday)   /* hafta içi mi? */
-            && (9 <= tm.tm_hour && 16 >= tm.tm_hour)){ /* iş saati mi?  */
-            if (Fincan.bardak_bos == true) {             /* fincanımız boşsa */
-               doldur(&Fincan);                            /* dolduralım */
-            } else {                                     /* değilse */
-                ic(&Fincan);                               /* içelim */
+    /* standart olarak boş */
+    Fincan.bardak_bos = true;
+
+    /* "main loop" ana döngü */
+    for (;;){
+        while (
+           /* hafta içi mi? */
+           (1 <= tm.tm_mday && 5  >= tm.tm_mday)
+           /* iş saati mi?  */
+        && (9 <= tm.tm_hour && 16 >= tm.tm_hour)){
+
+            /* fincanımız boşsa */
+            if (Fincan.bardak_bos == true) {
+                /* dolduralım */
+                doldur(&Fincan);
+              /* değilse */
+            } else {
+                /* içelim */
+                ic(&Fincan);
             }
-        } //else
-        printf("Vuhu\n"); /* hafta için veya iş sati değilse vuhu */
-        sleep(60);        /* bir dakika bekleyip tekrar kontrol edelim */
+
+        } /* while'ın sonu, hafta içi veya iş saati bitince buraya geliyor */
+
+        /* hafta için veya iş sati değilse 
+         * (ana döngü içindeyiz ama while döngüsünden çıktık) vuhu */
+        printf("Vuhu\n");
+
+        /* bir dakika bekleyip tekrar kontrol edelim */
+#ifdef __unix__
+        /* sleep() fonksiyonu, 
+         * UNIX benzeri işletim sistemlerinde saniye ile çalışır. */
+        sleep(60);
+#elif _WIN32
+        /* Sleep() fonksiyonu, 
+         * Windows'ta saniye ile çalışır. */
+        sleep(60000);
+#endif
     }
     return 0;
 }
