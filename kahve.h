@@ -46,21 +46,25 @@ struct bardak {
 /* Bardak adlı tipi oluşturalım */
 typedef struct bardak Bardak;
 
+void bekle(int sure){
+#ifdef __unix__
+        /* sleep() fonksiyonu,
+         * UNIX benzeri işletim sistemlerinde saniye ile çalışır. */
+        sleep(sure);
+#elif _WIN32
+        /* Sleep() fonksiyonu,
+         * Windows'ta mikrosaniye ile çalışır. */
+        sleep(sure * 100);
+#endif
+}
+
 /* bardağımızı doldurmak için olan fonksiyonumuz */
 void doldur(Bardak *Fincan){
     /* bardak zaten doluysa bir daha doldurmayalım diye */
     if (Fincan->bardak_bos == true){
         /* doldururken "doldur" yazıyor */
         printf("Doldur\n");
-#ifdef __unix__
-        /* sleep() fonksiyonu,
-         * UNIX benzeri işletim sistemlerinde saniye ile çalışır. */
-        sleep(30);
-#elif _WIN32
-        /* Sleep() fonksiyonu,
-         * Windows'ta mikrosaniye ile çalışır. */
-        sleep(30000);
-#endif
+        bekle(30);
         /* doldurduğumuz için artık boş değil */
         Fincan->bardak_bos = false;
     }
@@ -72,15 +76,7 @@ void ic(Bardak *Fincan){
     if (Fincan->bardak_bos == false){
         /* içerken "ic" yazıyor */
         printf("İç\n");
-#ifdef __unix__
-        /* sleep() fonksiyonu,
-         * UNIX benzeri işletim sistemlerinde saniye ile çalışır. */
-        sleep(300);
-#elif _WIN32
-        /* Sleep() fonksiyonu,
-         * Windows'ta mikrosaniye ile çalışır. */
-        sleep(300000);
-#endif
+        bekle(300);
         /* içtiğimiz için artık boş */
         Fincan->bardak_bos = true;
     }
