@@ -16,35 +16,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* bu dosyanın bir kere include edileceğinden emin olalım. */
+/* be sure this includes once */
 #ifndef __KAHVE_H__
 #define __KAHVE_H__
 
-/* "iç" ve "doldur" yazıları için */
+/* fpr printing */
 #include <stdio.h>
-/* bardak dolu mu öğrenmek için */
+/* to know if the Cup is empty or not */
 #include <stdbool.h>
-/* şu anki zamanı bulup ona göre içip içmeyeceğimize karar vermek için */
+/* to learn the current time */
 #include <time.h>
 
 #ifdef __unix__
-/* sleep() fonksiyonu,
-* UNIX benzeri işletim sistemlerinde unistd.h dosyasında bulunur. */
+/* sleep() is in this file in UNIX-like OSes. */
 # include <unistd.h>
 #elif _WIN32
-/* Sleep() fonksiyonu,
-* Windows'ta windows.h dosyasında bulunur. */
+/* Sleep() is in this file in Windows */
 # include <windows.h>
 #endif
 
-/* bardak yapımızı oluşturalım */
-struct bardak {
-/* bardak boş mu test etmek için booleanımız */
-    bool bardak_bos;
+/* create the cup structure */
+struct cup {
+/* to know if the cup is empty or not */
+    bool is_empty;
 };
 
-/* Bardak adlı tipi oluşturalım */
-typedef struct bardak Bardak;
+/* lets create the "Cup" type */
+typedef struct cup Cup;
 
-#define en_guzel_icecek "kahve" /* <3 */
+#define best_drink_evet "coffee" /* <3 */
 #endif //__KAHVE_H__

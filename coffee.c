@@ -16,46 +16,44 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* her şeyimizin olduğu header dosyası */
 #include "coffee.h"
 
 int main(int argc, char **argv){
-    /* tarih ve saat için ana bölüm */
+    /* main section for date and time */
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
 
-    /* Fincan adlı Bardak'ımızı tanımlayalım */
-    Bardak Fincan;
+    /* lets define our Cup called Mug */
+    Cup Mug;
 
-    /* standart olarak boş */
-    Fincan.bardak_bos = true;
+    /* empty as default */
+    Mug.is_empty = true;
 
-    /* "main loop" ana döngü */
+    /* the main loop */
     for (;;){
         while (
-           /* hafta içi mi? */
+           /* is it a weekday? */
            (1 <= tm.tm_mday && 5  >= tm.tm_mday)
-           /* iş saati mi?  */
+           /* is it working hour? */
         && (9 <= tm.tm_hour && 16 >= tm.tm_hour)){
 
-            /* fincanımız boşsa */
-            if (Fincan.bardak_bos == true) {
+            /* if our Mug is empty */
+            if (Mug.is_empty == true) {
                 /* dolduralım */
-                doldur(&Fincan);
-              /* değilse */
+                fill(&Mug);
+              /* if not */
             } else {
                 /* içelim */
-                ic(&Fincan);
+                drink(&Mug);
             }
 
-        } /* while'ın sonu, hafta içi veya iş saati bitince buraya geliyor */
+        } /* end of while, we are here if it sn't a weekday or working hour */
 
-        /* hafta için veya iş sati değilse
-         * (ana döngü içindeyiz ama while döngüsünden çıktık) vuhu */
-        printf("Vuhu\n");
+        /* we are happy */
+        printf("Wohoo!\n");
 
-        /* bir dakika bekleyip tekrar kontrol edelim */
-        bekle(60);
+        /* wait for a minute and recheck */
+        wait(60);
     }
     return 0;
 }
