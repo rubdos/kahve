@@ -17,7 +17,7 @@
  */
 
 /* her şeyimizin olduğu header dosyası */
-#include "kahve.h"
+#include "coffee.h"
 
 int main(int argc, char **argv){
     /* tarih ve saat için ana bölüm */
