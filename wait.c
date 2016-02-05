@@ -21,10 +21,10 @@
 /* we can wait :( */
 void wait(int time){
 #ifdef __unix__
-        /* sleep() work with seconds in UNIX-like OSes */
+        /* sleep() works with seconds in UNIX-like OSes */
         sleep(time);
 #elif _WIN32
-        /* sleep() work with microseconds in Windows */
-        sleep(time * 100);
+        /* Sleep() works with microseconds in Windows */
+        Sleep(time * 100);
 #endif
 }
