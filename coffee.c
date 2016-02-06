@@ -1,6 +1,7 @@
 /*
  * Kahve.
  * Copyright (C) 2016  Arda Ünlü
+ *                     Ruben De Smet
 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +32,8 @@ int main(int argc, char **argv){
 
     /* the main loop */
     for (;;){
+        t = time(NULL);
+        tm = *localtime(&t);
         while (
            /* is it a weekday? */
            (1 <= tm.tm_mday && 5  >= tm.tm_mday)
