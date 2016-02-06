@@ -21,7 +21,7 @@
 /* we can drink */
 void drink(Cup *Mug){
     /* let's not drink if already empty */
-    if (Mug->is_empty == false){
+    if (!Mug->is_empty){
         /* print "drinking" */
         printf("Drinking...\n");
         wait(300);
