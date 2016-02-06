@@ -12,3 +12,7 @@ $(EXECUTABLE): $(OBJECTS)
 
 .c.o:
 	    $(CC) $(CFLAGS) $< -o $@
+
+.PHONY: clean
+clean:
+		rm -rf *.o coffee
