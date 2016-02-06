@@ -18,6 +18,9 @@
  */
 
 #include "coffee.h"
+#include "wait.h"
+#include "drink.h"
+#include "fill.h"
 
 int main(int argc, char **argv){
     /* main section for date and time */

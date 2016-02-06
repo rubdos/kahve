@@ -17,6 +17,8 @@
  */
 
 #include "coffee.h"
+#include "wait.h"
+#include "drink.h"
 
 /* we can drink */
 void drink(Cup *Mug){

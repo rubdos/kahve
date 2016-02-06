@@ -1,7 +1,7 @@
 /*
  * Kahve.
- * Copyright (C) 2016  Arda Ünlü
-
+ * Copyright (C) 2016  Ruben De Smet
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -16,18 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "coffee.h"
-#include "wait.h"
-#include "fill.h"
+/* be sure this includes once */
+#ifndef __KAHVE_FILL_H__
+#define __KAHVE_FILL_H__
 
-/* we can fill out cups */
-void fill(Cup *Mug){
-    /* lets not fill again if already full */
-    if (Mug->is_empty == true){
-        /* print "filling" */
-        printf("Filling...\n");
-        wait(30);
-        /* not empty, because we filled it */
-        Mug->is_empty = false;
-    }
-}
+#include "coffee.h"
+
+void fill(Cup *Mug);
+
+#endif
+

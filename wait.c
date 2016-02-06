@@ -17,6 +17,7 @@
  */
 
 #include "coffee.h"
+#include "wait.h"
 
 /* we can wait :( */
 void wait(int time){
